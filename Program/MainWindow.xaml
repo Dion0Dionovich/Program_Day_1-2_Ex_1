@@ -1,0 +1,63 @@
+﻿<Window x:Class="Program.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Program"
+        mc:Ignorable="d"
+        Title="Program" Height="450" Width="420" >
+    
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Выбор категории -->
+        <ComboBox Name="ComboBox_Category" Grid.Row="0" Margin="0 0 0 10" VerticalContentAlignment="Center" >
+            <ComboBoxItem Content="Категория" IsSelected="True" IsEnabled="False" />
+        </ComboBox>
+
+        <!-- Диапазон цен -->
+        <ComboBox Name="ComboBox_PriceRange" Grid.Row="1" Margin="0 0 0 10" VerticalContentAlignment="Center" >
+            <ComboBoxItem Content="Диапазон цен" IsSelected="True" IsEnabled="False" />
+        </ComboBox>
+
+        <!-- Таблица товаров -->
+        <DataGrid Name="DataGrid_ProductTable" Grid.Row="2" IsReadOnly="True" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0 0 0 10" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Товар" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Price}" />
+                <DataGridTextColumn Header="Кол-во" Width="*" Binding="{Binding Quantity}" />
+                <DataGridTextColumn Header="Сумма" Width="*" Binding="{Binding Total}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Поле ввода количества -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0 0 0 10" >
+            <TextBlock Text="Количество:" VerticalAlignment="Center" Margin="0 0 15 0" Width="80" />
+            <TextBox Name="TextBox_count" Width="236" Height="25" KeyDown="TextBox_count_KeyDown" />
+        </StackPanel>
+
+    <!-- Скидка -->
+    <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0 0 0 10" >
+        <TextBlock Text="Скидка" VerticalAlignment="Center" Margin="0 0 5 0" Width="60" />
+        <CheckBox Name="CheckBox_discount" VerticalAlignment="Center" Margin="0 0 15 0" />
+        <ComboBox Name="ComboBox_DiscountPercentage" Width="235" VerticalContentAlignment="Center" IsEnabled="False" >
+            <ComboBoxItem Content="Процент скидки" IsSelected="True" IsEnabled="False" />
+        </ComboBox>
+    </StackPanel>
+
+    <!-- Итого -->
+    <TextBlock Name="TextBlock_result" Grid.Row="5" Text="Итого к оплате:" Margin="0 0 0 10" />
+
+    <!-- Рассчитать итог -->
+        <Button Name="Butt_result" Grid.Row="6" Content="Рассчитать" HorizontalAlignment="Left" Padding="10 5" />
+    </Grid>
+
+</Window>
